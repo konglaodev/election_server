@@ -19,7 +19,7 @@ class isSuperAdmin
         if(Auth::check()&&Auth::user()->role_id==1){
             return $next($request);
         }
-            return response('Unauthorized or You are not superadmin', 401);
+            return response('Unauthorized or You are not superadmin nice gay', 401);
         
         
     }

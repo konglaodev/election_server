@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCencusesTable extends Migration
+class CreateVillageNumbersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateCencusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cencuses', function (Blueprint $table) {
+        Schema::create('village_numbers', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->string("census_number");
-            $table->unsignedBigInteger("village_id");
+            $table->string('number');
             $table->timestamps();
-        });
-        Schema::table("cencuses",function (Blueprint $table){
-            $table->foreign("village_id")->references("id")->on("village_numbers")->onDelete("CASCADE");
         });
     }
 
@@ -31,6 +27,6 @@ class CreateCencusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cencuses');
+        Schema::dropIfExists('village_numbers');
     }
 }
