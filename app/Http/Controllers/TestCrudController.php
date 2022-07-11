@@ -3,14 +3,23 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TestCrud;
+
 use DB;
+
 use App\Http\Requests\StoreTestCrudRequest;
+
 use App\Http\Requests\UpdateTestCrudRequest;
+
 use Illuminate\Subport\Facades\File;
+
 use Illuminate\Support\Str;
+
 use Illuminate\Support\Facades\Hash;
+
 class TestCrudController extends Controller
+
 {
+
     /**
      * Display a listing of the resource.
      *

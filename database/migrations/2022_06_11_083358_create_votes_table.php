@@ -15,13 +15,13 @@ class CreateVotesTable extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->unsignedBigInteger("cencus_id");
+            $table->unsignedBigInteger("population_id");
             $table->unsignedBigInteger("candidate_id");
             $table->timestamps();
         });
 
         Schema::table('votes',function (Blueprint $table){
-            $table->foreign("cencus_id")->references("id")->on("cencuses")->onDelete("CASCADE");
+            $table->foreign("population_id")->references("id")->on("populations")->onDelete("CASCADE");
             $table->foreign("candidate_id")->references("id")->on("candidates")->onDelete("CASCADE");
 
         });
@@ -35,8 +35,8 @@ class CreateVotesTable extends Migration
     public function down()
     {
         Schema::table("votes",function (Blueprint $table){
-            $table->dropForeign(["cencus_id"]);
-            $table->dropColumn("cencus_id");
+            $table->dropForeign(["population_id"]);
+            $table->dropColumn("population_id");
             $table->dropForeign(["candidate_id"]);
             $table->dropColumn("candidate_id");
             

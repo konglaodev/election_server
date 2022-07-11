@@ -24,8 +24,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // candidate route
 Route::post("/Candidate", "App\Http\Controllers\CandicateController@addCandidate");
 Route::delete("/Candidate", "App\Http\Controllers\CandicateController@delete");
-Route::put("/Candidate", "App\Http\Controllers\CandicateController@update");
+Route::put("/Candidate/{id}", "App\Http\Controllers\CandicateController@update");
 Route::get("/Candidate", "App\Http\Controllers\CandicateController@getAllcandidates");
+Route::get("/Candidate/{id}", "App\Http\Controllers\CandicateController@getCandidatesById");
 // admin routes
 Route::get("/getToken", "App\Http\Controllers\ApiAuthentication@login");
 Route::get("/supa", "App\Http\Controllers\superAdminController@getData");
@@ -34,15 +35,30 @@ Route::get("/supa", "App\Http\Controllers\superAdminController@getData");
 
 // route for crud village_number 
 Route::post("/VillageNumber", "App\Http\Controllers\VillageNumberController@addVillageNumber");
-Route::put("/VillageNumber", "App\Http\Controllers\VillageNumberController@update");
-Route::get("/VillageNumber", "App\Http\Controllers\VillageNumberController@index");
-Route::delete("/VillageNumber", "App\Http\Controllers\VillageNumberController@delete");
+
+Route::put("/VillageNumber/{id}", "App\Http\Controllers\VillageNumberController@update");
+Route::delete("/VillageNumber/{id}", "App\Http\Controllers\VillageNumberController@delete");
+//getall 
+Route::get("/VillageNumber/", "App\Http\Controllers\VillageNumberController@show");
+//get by id 
+Route::get("/VillageNumber/{id}", "App\Http\Controllers\VillageNumberController@showByid");
 
 // select by id  
-Route::get("/VillageNumber", "App\Http\Controllers\VillageNumberController@show");
+//census route
 
+Route::post("/census", "App\Http\Controllers\CencusController@create");
+Route::put("/census/{id}", "App\Http\Controllers\CencusController@update");
+Route::delete("/census/{id}", "App\Http\Controllers\CencusController@delete");
+Route::get("/census/{id}", "App\Http\Controllers\CencusController@selectById");
+Route::get("/census", "App\Http\Controllers\CencusController@index");
 
-//route test crud image 
+Route::post("/populations", "App\Http\Controllers\PopulationController@addPopulation");
+Route::put("/populations/{id}", "App\Http\Controllers\PopulationController@update");
+Route::delete("/populations/{id}", "App\Http\Controllers\PopulationController@delete");
+Route::get("/populations/{id}", "App\Http\ControllersPopulationControllerr@selectById");
+Route::get("/populations", "App\Http\Controllers\PopulationController@index");
+
+//route test crud image can
 Route::post("/testcrud", "App\Http\Controllers\TestCrudController@store");
 Route::put("/testcrud", "App\Http\Controllers\TestCrudController@update");
 

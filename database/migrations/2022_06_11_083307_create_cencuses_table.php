@@ -19,6 +19,7 @@ class CreateCencusesTable extends Migration
             $table->unsignedBigInteger("village_id");
             $table->timestamps();
         });
+        
         Schema::table("cencuses",function (Blueprint $table){
             $table->foreign("village_id")->references("id")->on("village_numbers")->onDelete("CASCADE");
         });

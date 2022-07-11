@@ -6,7 +6,7 @@ use App\Models\Candidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+
 
 class CandicateController extends Controller
 {
@@ -14,61 +14,74 @@ class CandicateController extends Controller
     {
 
         // check role 
-        $this->middleware("isAdmin:api");
+        // $this->middleware("isAdmin:api");
     }
 
 
     // create candidate 
-    public function addCandidate(Request $request){
+    public function addCandidate(Request $request)
+    {
 
         //validate request data form client request
         $request->validate([
-            "name"=>"string|required",
-            "surname"=>"string|required",
-            "dateOfBirth"=>"date|required",
-            "degree"=>"string|required",
-            "slogan"=>"string|required",
-            "history"=>"string|required",
-            "address"=>"string|required",
-            "image"=>"image|required",
+            "name" => "string|required",
+            "surname" => "string|required",
+            "dateOfBirth" => "date|required",
+            "degree" => "string|required",
+            "slogan" => "string|required",
+            "history" => "string|required",
+            "address" => "string|required",
+            "image" => "image|required",
 
         ]);
-// get fillable from Model Candidate and send request to data table 
+        // get fillable from Model Candidate and send request to data table 
         $candidate = new Candidate();
-        $candidate->name=$request->name;
-        $candidate->surname=$request->surname;
-        $candidate->dateOfBirth=$request->dateOfBirth;
-        $candidate->degree=$request->degree;
-        $candidate->slogan=$request->slogan;
-        $candidate->history=$request->history;
-        $candidate->address=$request->address;
+        $candidate->name = $request->name;
+        $candidate->surname = $request->surname;
+        $candidate->dateOfBirth = $request->dateOfBirth;
+        $candidate->degree = $request->degree;
+        $candidate->slogan = $request->slogan;
+        $candidate->history = $request->history;
+        $candidate->address = $request->address;
 
         // add image from function storeCandidateImage in 
         $candidate->image = $candidate->storeCandidateImage($request->image);
         $candidate->save();
 
-        return response()->json(["data"=>$candidate]);
+        return response()->json(["data" => $candidate]);
     }
 
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $id = $request->id;
         $id = DB::table('candidates')
-        ->where('id',$id)
-        ->delete();
-        return response()->json(['massage'=>'delete success',$id]);
-      
+            ->where('id', $id)
+            ->delete();
+        return response()->json(['massage' => 'delete success', $id]);
     }
-    public function update(Request $request){
-        $candidate =array();
-       function storeCandidateImage($image){
-            $md5Name = md5_file($image->getRealPath());
-        $guessExtension = $image->guessExtension();
-        $fullName = $md5Name.'.'.$guessExtension;
-        $image->storeAs('candidate_images', $fullName  ,'public');
-        return $fullName;
-        }
-        $id = $request->id;
+    public function update(Request $request,$id)
+    {
+        $request->validate([
+            "name" => "string|required",
+            "surname" => "string|required",
+            "dateOfBirth" => "date|required",
+            "degree" => "string|required",
+            "slogan" => "string|required",
+            "history" => "string|required",
+            "address" => "string|required",
+            "image" => "image|required",
+        ]);
+       
+        $candidate = Candidate::findOrFail($id);
+       // $candidate = array();
+      
+            $md5Name = md5_file($request->image->getRealPath());
+            $guessExtension = $request->image->guessExtension();
+            $fullName = $md5Name . '.' . $guessExtension;
+            $request->image->storeAs('candidate_images', $fullName, 'public');
+        
+      //  $id = $request->id;
         $candidate['name'] = $request->name;
         $candidate['surname'] = $request->surname;
         $candidate['dateOfBirth'] = $request->dateOfBirth;
@@ -76,22 +89,29 @@ class CandicateController extends Controller
         $candidate['slogan'] = $request->slogan;
         $candidate['history'] = $request->history;
         $candidate['address'] = $request->address;
-        
-        $data_update = DB::table('candidates')
-                        ->where('id',$id)
-                        ->update($candidate);
-                         return response()->json(['status'=>'update success',$data_update  ]);
-      
-      
+        $candidate['image'] = $fullName;
+        $candidate->save();
+
+        // $data_update = DB::table('candidates')
+        //     ->where('id', $id)
+        //     ->update($candidate);
+        return response()->json(['status' => 'update success', $candidate]);
     }
 
-    
 
-    public function getAllcandidates(Request $request){
+
+    public function getAllcandidates(Request $request)
+    {
+        $data = DB::table('candidates')
+            ->get();
+        return response()->json(['massage' => 'get succesefully', $data]);
+    }
+
+    public function getCandidatesById(Request $request,$id){
+        $candidate = Candidate::findOrFail($id);
         $data =DB::table('candidates')
+        ->where('id', $request->id)
         ->get();
-        return response()->json(['massage'=>'get succesefully',$data]);
-      
+        return response()->json(['massage' => 'get ByID  succesefully', $data]);
     }
-
 }
