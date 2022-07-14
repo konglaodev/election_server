@@ -8,8 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Cencus extends Model
 {
     use HasFactory;
-    protected $fillable = ["censuse_number"];
-    public function villages(){
-        return $this->hasMany(Census::class);
+    protected $fillable = ["cencus_number","village"];
+    public function village_numbers(){
+        return $this->belongsTo(VillageNumber::class);
     }
+    public function population(){
+        return $this->hasMany(Population::class);
+    }
+    
+   
 }

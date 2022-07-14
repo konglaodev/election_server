@@ -52,9 +52,9 @@ class CandicateController extends Controller
     }
 
 
-    public function delete(Request $request)
+    public function delete(Request $request, $id)
     {
-        $id = $request->id;
+       $id= $request->id;
         $id = DB::table('candidates')
             ->where('id', $id)
             ->delete();

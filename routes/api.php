@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // candidate route
 Route::post("/Candidate", "App\Http\Controllers\CandicateController@addCandidate");
-Route::delete("/Candidate", "App\Http\Controllers\CandicateController@delete");
+Route::delete("/Candidate/{id}", "App\Http\Controllers\CandicateController@delete");
 Route::put("/Candidate/{id}", "App\Http\Controllers\CandicateController@update");
 Route::get("/Candidate", "App\Http\Controllers\CandicateController@getAllcandidates");
 Route::get("/Candidate/{id}", "App\Http\Controllers\CandicateController@getCandidatesById");
@@ -52,11 +52,12 @@ Route::delete("/census/{id}", "App\Http\Controllers\CencusController@delete");
 Route::get("/census/{id}", "App\Http\Controllers\CencusController@selectById");
 Route::get("/census", "App\Http\Controllers\CencusController@index");
 
-Route::post("/populations", "App\Http\Controllers\PopulationController@addPopulation");
+Route::post("/populations", "App\Http\Controllers\PopulationController@create");
 Route::put("/populations/{id}", "App\Http\Controllers\PopulationController@update");
 Route::delete("/populations/{id}", "App\Http\Controllers\PopulationController@delete");
-Route::get("/populations/{id}", "App\Http\ControllersPopulationControllerr@selectById");
+
 Route::get("/populations", "App\Http\Controllers\PopulationController@index");
+Route::get("/populations/{id}", "App\Http\Controllers\PopulationController@getPulationsById");
 
 //route test crud image can
 Route::post("/testcrud", "App\Http\Controllers\TestCrudController@store");

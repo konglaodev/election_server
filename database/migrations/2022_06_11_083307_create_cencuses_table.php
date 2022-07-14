@@ -15,7 +15,7 @@ class CreateCencusesTable extends Migration
     {
         Schema::create('cencuses', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->string("census_number");
+            $table->string("cencus_number");
             $table->unsignedBigInteger("village_id");
             $table->timestamps();
         });
@@ -32,6 +32,11 @@ class CreateCencusesTable extends Migration
      */
     public function down()
     {
+        Schema::table("cencuses",function (Blueprint $table){
+            $table->dropForeign(["village_id"]);
+            $table->dropColumn("village_id");
+            
+        });
         Schema::dropIfExists('cencuses');
     }
 }

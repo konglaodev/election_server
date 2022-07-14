@@ -9,7 +9,10 @@ class Candidate extends Model
 {
     use HasFactory;
     protected $fillable = ["name","surname","dateOfBirth","degree","slogan","history","address","image"];
-
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
     public function storeCandidateImage($image){
         $md5Name = md5_file($image->getRealPath());
     $guessExtension = $image->guessExtension();

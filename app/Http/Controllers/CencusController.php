@@ -35,7 +35,7 @@ class CencusController extends Controller
             "village_id" => "required",
         ]);
         $cencus = Cencus::findOrFail($id);
-        $cencus['census_number'] = $request->census_number;
+        $cencus['cencus_number'] = $request->census_number;
         $cencus['village_id'] = $request->village_id;
 
         $cencus->save();
@@ -54,17 +54,17 @@ class CencusController extends Controller
 
         //validate request data form client request
         $request->validate([
-            "census_number" => "string|required",
+            "cencus_number" => "string|required",
             "village_id" => "required",
          
         ]);
         // get fillable from Model Candidate and send request to data table 
-        $census = new Cencus();
-        $census->census_number= $request->census_number;
-        $census->village_id= $request->village_id;
-        $census->save();
+        $cencus = new Cencus();
+        $cencus->cencus_number= $request->cencus_number;
+        $cencus->village_id= $request->village_id;
+        $cencus->save();
 
-        return response()->json(["data" => $census]);
+        return response()->json(["data" => $cencus]);
     }
 
 }

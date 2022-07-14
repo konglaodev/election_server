@@ -10,9 +10,19 @@ class Population extends Model
     
     use HasFactory;
     protected $fillable = ["name","surname", "phoneNumber","dateOfBirth","address","image","cencus_id"];
-    public function populations(){
-        return $this->belongsTo(Population::class);
+
+    public function cencuses(){
+        return $this->belongsTo(Cencus::class);
     }
+
+    public function votes()
+    {
+        return $this->hasOne(Vote::class);
+    }
+
+    // public function populations(){
+    //     return $this->belongsTo(Population::class);
+    // }
     public function storePopulationsImage($image){
         $md5Name = md5_file($image->getRealPath());
     $guessExtension = $image->guessExtension();

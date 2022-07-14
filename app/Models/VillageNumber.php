@@ -9,8 +9,8 @@ class VillageNumber extends Model
 {
     use HasFactory;
     protected $fillable = ["number"];
-    public function censuse(){
-        return $this->belongsTo(VillageNumber::class);
+    public function cencuses(){
+        return $this->hasMany(Cencus::class);
     }
 
 }

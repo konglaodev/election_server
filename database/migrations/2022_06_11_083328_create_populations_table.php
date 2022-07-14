@@ -24,6 +24,7 @@ class CreatePopulationsTable extends Migration
             $table->unsignedBigInteger("cencus_id");
             $table->timestamps();
         });
+        
         Schema::table("populations",function (Blueprint $table){
             $table->foreign("cencus_id")->references("id")->on("cencuses")->onDelete("CASCADE");
         });
