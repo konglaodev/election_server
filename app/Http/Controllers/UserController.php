@@ -35,4 +35,10 @@ class UserController extends Controller
 }
      
     }
+
+    public function getallusers(Request $request) {
+        $data = DB::table('users')
+            ->get();
+        return response()->json(['massage' => 'get succesefully', $data]);
+    }
 }

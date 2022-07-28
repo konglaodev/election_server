@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiAuthentication;
+use App\Models\Role;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -32,6 +33,7 @@ Route::get("/getToken", "App\Http\Controllers\ApiAuthentication@login");
 Route::get("/supa", "App\Http\Controllers\superAdminController@getData");
 Route::get("/checkauth", "App\Http\Controllers\superAdminController@getData");
 Route::post("/register", "App\http\Controllers\UserController@register");
+Route::get("/getalluser", "App\http\Controllers\UserController@getallusers");
 
 
 
@@ -73,7 +75,7 @@ Route::get("/getScoreAll", "App\Http\Controllers\VoteController@getScoreAll");
 // Route::post("/vote", "App\Http\Controllers\VoteController@update");
 // Route::post("/vote", "App\Http\Controllers\VoteController@");
 
-
+Route::post("/addVerify", "App\Http\Controllers\VerifyController@addVerify");
 
 //route test crud image can
 Route::post("/testcrud", "App\Http\Controllers\TestCrudController@store");
