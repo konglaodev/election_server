@@ -9,7 +9,14 @@ class Population extends Model
 {
     
     use HasFactory;
-    protected $fillable = ["name","surname", "phoneNumber","dateOfBirth","address","image","cencus_id"];
+    protected $fillable = 
+    ["name",
+    "surname", 
+    "phoneNumber",
+    "dateOfBirth",
+    "address",
+    "image","cencus_id"
+];
 
     public function cencuses(){
         return $this->belongsTo(Cencus::class);
@@ -17,7 +24,7 @@ class Population extends Model
 
     public function votes()
     {
-        return $this->hasOne(Vote::class);
+        return $this->hasMany(Vote::class);
     }
 
     // public function populations(){

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cencus extends Model
 {
     use HasFactory;
-    protected $fillable = ["cencus_number","village"];
+    protected $fillable = ["cencus_id","village"];
     public function village_numbers(){
         return $this->belongsTo(VillageNumber::class);
     }

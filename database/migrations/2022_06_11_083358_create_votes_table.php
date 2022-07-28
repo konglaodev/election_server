@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateVotesTable extends Migration
+
 {
     /**
      * Run the migrations.
@@ -14,8 +15,10 @@ class CreateVotesTable extends Migration
     public function up()
     {
         Schema::create('votes', function (Blueprint $table) {
-            $table->bigIncrements("id");
+        
+            
             $table->unsignedBigInteger("population_id");
+            $table->primary("population_id");
             $table->unsignedBigInteger("candidate_id");
             $table->timestamps();
         });

@@ -14,8 +14,8 @@ class CreateCencusesTable extends Migration
     public function up()
     {
         Schema::create('cencuses', function (Blueprint $table) {
-            $table->bigIncrements("id");
-            $table->string("cencus_number");
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger("cencus_id");
             $table->unsignedBigInteger("village_id");
             $table->timestamps();
         });

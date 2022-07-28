@@ -16,7 +16,7 @@ class SuperAdminseeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => "kongjai",
-            'phoneNumber' => "+856202222222",
+            'phoneNumber' => "+8562022222222",
             'password' => bcrypt("1234"),
             'status' => "not_verify",
             'role_id' => 1,

@@ -12,6 +12,8 @@ class VillageNumberController extends Controller
     // {
     //     $this->middleware("isAdmin:api");
     // }
+
+    //show data all 
     public function getAllvillage_numbers(Request $request)
     {
         $data = DB::table('village_numbers')
@@ -57,36 +59,36 @@ class VillageNumberController extends Controller
     public function delete(request $request, $id)
     {
         $id = $request->id;
-        $id = DB::table('village_numbers')
+        $data = DB::table('village_numbers')
             ->where('id', $id)
             ->delete();
-        return response()->json(['massage' => 'delete success', $id]);
+        return response()->json(['massage' => 'delete success', $data]);
     }
 
 
+    
     function showByid(Request $request, $id)
     {
         $id = $request->id;
-        $data = array();
-        $data = DB::table('village_numbers')
-            ->where('id', $id)
-            ->get();
-        if (!$id) {
-            return response()->json(['massage' => 'no id request', $data]);
-        } else if (!$data) {
-            return response()->json(['massage' => 'no data', $data]);
-        } else if ($data == null) {
-            return response()->json(['massage' => 'get succesefully', $data]);
-        } else {
-            return response()->json(['massage' => 'no data and id', $data]);
-        }
+        $data =DB::table('village_numbers')
+        ->where('id', $id)
+        ->get();
+        return response()->json(['massage' => 'get villageNumber ByID', $data]);
+        
     }
     public function show(Request $request)
     {
 
         $data = DB::table('village_numbers')
             ->get();
+            if(count($data) > 0){
 
-        return response()->json(['massage' => 'get succesefully', $data]);
+                return response()->json(['massage' => 'get succesefully', $data]);
+                
+            }else{
+                return response()->json(['massage' => 'no response data',$data]);
+            }
+
+       
     }
 }

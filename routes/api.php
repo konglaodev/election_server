@@ -46,11 +46,13 @@ Route::get("/VillageNumber/{id}", "App\Http\Controllers\VillageNumberController@
 // select by id  
 //census route
 
-Route::post("/census", "App\Http\Controllers\CencusController@create");
-Route::put("/census/{id}", "App\Http\Controllers\CencusController@update");
-Route::delete("/census/{id}", "App\Http\Controllers\CencusController@delete");
-Route::get("/census/{id}", "App\Http\Controllers\CencusController@selectById");
-Route::get("/census", "App\Http\Controllers\CencusController@index");
+Route::post("/cencus", "App\Http\Controllers\CencusController@create");
+Route::put("/cencus/{id}", "App\Http\Controllers\CencusController@update");
+Route::delete("/cencus/{id}", "App\Http\Controllers\CencusController@delete");
+Route::get("/cencus/{id}", "App\Http\Controllers\CencusController@selectById");
+Route::get("/cencus", "App\Http\Controllers\CencusController@index");
+
+//populations
 
 Route::post("/populations", "App\Http\Controllers\PopulationController@create");
 Route::put("/populations/{id}", "App\Http\Controllers\PopulationController@update");
@@ -58,6 +60,16 @@ Route::delete("/populations/{id}", "App\Http\Controllers\PopulationController@de
 
 Route::get("/populations", "App\Http\Controllers\PopulationController@index");
 Route::get("/populations/{id}", "App\Http\Controllers\PopulationController@getPulationsById");
+
+
+
+
+//route vote for
+Route::post("/vote", "App\Http\Controllers\VoteController@create");
+// Route::post("/vote", "App\Http\Controllers\VoteController@update");
+// Route::post("/vote", "App\Http\Controllers\VoteController@");
+
+
 
 //route test crud image can
 Route::post("/testcrud", "App\Http\Controllers\TestCrudController@store");
@@ -68,11 +80,11 @@ Route::get("test", function () {
     $response = Http::asForm()->post('http://127.0.0.1:8001/oauth/token', [
         'grant_type' => 'password',
         'client_id' => '2',
-        'client_secret' => 'E8CjKMjA3Cqyw7Qi44O5yAyR1JznILiJNgyweI57',
-        'phoneNumber' => '+8562011111111',
-        'password' => 'test',
+        'client_secret' => 'iUGqjNrDcGHgN02NvAEVcEdEbLzLRrWtB4mpZL1F',
+        'phoneNumber' => '+8562022222222',
+        'password' => '1234',
         'scope' => '',
     ]);
 
-    return $response->json();
+    return $response->json(['massage'=>'getsusccess']);
 });

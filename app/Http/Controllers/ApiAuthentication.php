@@ -11,9 +11,9 @@ class ApiAuthentication extends Controller
 $response = Http::asForm()->post('http://localhost:8001/oauth/token', [
     'grant_type' => 'password',
     'client_id' => '2',
-    'client_secret' => 'qxSWsxQMjCw1oE9jVsLfxOBnKnmx8W7PP9tVCVMK',
-    'phoneNumber' => '+8562011111111',
-    'password' => 'test',
+    'client_secret' => 'iUGqjNrDcGHgN02NvAEVcEdEbLzLRrWtB4mpZL1F',
+    'phoneNumber' => '+8562022222222',
+    'password' => '1234',
     'scope' => '',
 ]);
  
