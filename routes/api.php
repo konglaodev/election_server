@@ -30,6 +30,8 @@ Route::get("/Candidate/{id}", "App\Http\Controllers\CandicateController@getCandi
 // admin routes
 Route::get("/getToken", "App\Http\Controllers\ApiAuthentication@login");
 Route::get("/supa", "App\Http\Controllers\superAdminController@getData");
+Route::get("/checkauth", "App\Http\Controllers\superAdminController@getData");
+Route::post("/register", "App\http\Controllers\UserController@register");
 
 
 
@@ -66,6 +68,8 @@ Route::get("/populations/{id}", "App\Http\Controllers\PopulationController@getPu
 
 //route vote for
 Route::post("/vote", "App\Http\Controllers\VoteController@create");
+Route::get("/getScore", "App\Http\Controllers\VoteController@getScore");
+Route::get("/getScoreAll", "App\Http\Controllers\VoteController@getScoreAll");
 // Route::post("/vote", "App\Http\Controllers\VoteController@update");
 // Route::post("/vote", "App\Http\Controllers\VoteController@");
 
