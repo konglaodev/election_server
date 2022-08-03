@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class VillageNumberController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware("isAdmin:api");
-    // }
+    public function __construct()
+    {
+        $this->middleware("isAdmin:api");
+    }
 
     //show data all 
     public function getAllvillage_numbers(Request $request)

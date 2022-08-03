@@ -13,7 +13,7 @@ class CencusController extends Controller
     {
 
         // check role 
-        // $this->middleware("isAdmin:api");
+        $this->middleware("isAdmin:api");
     }
     public function index(Request $request){
         $data = DB::table('cencuses')

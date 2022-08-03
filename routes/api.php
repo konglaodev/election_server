@@ -32,10 +32,13 @@ Route::get("/Candidate/{id}", "App\Http\Controllers\CandicateController@getCandi
 Route::get("/getToken", "App\Http\Controllers\ApiAuthentication@login");
 Route::get("/supa", "App\Http\Controllers\superAdminController@getData");
 Route::get("/checkauth", "App\Http\Controllers\superAdminController@getData");
+
+
+//user routes
+Route::delete("/deleteusers/{id}", "App\http\Controllers\UserController@deleteusers");
 Route::post("/register", "App\http\Controllers\UserController@register");
 Route::get("/getalluser", "App\http\Controllers\UserController@getallusers");
-
-
+Route::post("/userslogin", "App\http\Controllers\ApiAuthentication@userslogin");
 
 // route for crud village_number 
 Route::post("/VillageNumber", "App\Http\Controllers\VillageNumberController@addVillageNumber");

@@ -18,7 +18,7 @@ class VoteController extends Controller
     {
 
         // check role 
-        // $this->middleware("isAdmin:api");
+        $this->middleware("auth:api");
     }
     public function create(Request $request)
     {
@@ -32,6 +32,12 @@ class VoteController extends Controller
       
         $population_id = Vote::where('population_id', $request->population_id)
         ->first();  
+        // $status = "verify"; 
+        // if($population_id){
+        //     $checkverify= DB::select('SELECT populations.phoneNumber FROM Populations WHERE populations.id = '.$population_id );
+           
+        // }
+
         if ($population_id) {
             return response()->json(["massage" => 'ໂວດໄດ້ເທື່ອດຽວເດິກະໂປກ']);
         }          
@@ -58,9 +64,10 @@ class VoteController extends Controller
     }
     public function getScore(Request $request) {
       
-        $votes=DB::select('SELECT populations.name as population_name ,candidates.name as candidate_name from populations,candidates,votes WHERE votes.population_id=populations.id and candidates.id=votes.candidate_id;');
+        $votes=DB::select('SELECT populations.name ,candidates.name,COUNT(votes.candidate_id) as score FROM votes,populations,candidates where votes.population_id=populations.id AND votes.candidate_id =candidates.id
+        ORDER BY score DESC;');
 
-        return response()->json(['massage' =>'getCandidate and population yourvote',$votes]);
+        return response()->json($votes);
 
     }
     public function getScoreAll(Request $request) {
@@ -84,4 +91,6 @@ class VoteController extends Controller
         return response()->json(['massage'=>'getCandidate and population yourvote',"Data"=>$votes]);
 
     }
+
+    
 }

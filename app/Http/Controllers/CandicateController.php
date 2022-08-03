@@ -13,8 +13,8 @@ class CandicateController extends Controller
     public function __construct()
     {
 
-        // check role 
-        // $this->middleware("isAdmin:api");
+       
+        // $this->middleware("auth:api");
     }
 
 
@@ -104,13 +104,14 @@ class CandicateController extends Controller
     {
         $data = DB::table('candidates')
             ->get();
-        return response()->json(['massage' => 'get succesefully', $data]);
+        return response()->json(['data'=>$data]);
     }
 
     public function getCandidatesById(Request $request,$id){
         $candidate = Candidate::findOrFail($id);
         $data =DB::table('candidates')
         ->where('id', $request->id)
+        
         ->get();
         return response()->json(['massage' => 'get ByID  succesefully', $data]);
     }

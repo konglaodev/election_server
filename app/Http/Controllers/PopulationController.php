@@ -12,7 +12,7 @@ class PopulationController extends Controller
     //
     public function __construct()
     {
-        // $this->middleware("isAdmin:api");
+        $this->middleware("isAdmin:api");
     }
     public function create( Request $request){
 
