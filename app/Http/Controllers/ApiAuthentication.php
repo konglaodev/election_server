@@ -49,6 +49,7 @@ return $response->json();
         return response()->json(["data"=>$users]);
 
     }
+    //login function
     public function userslogin(Request $request){
             
         $username = $request->username;
@@ -66,7 +67,40 @@ return $response->json();
         
          
         return response()->json(['Token'=>$response->json(),'Users'=>$users,'Population'=>$populations]);
+                
 
+        //edit users
+            }
+            public function edit_user_role(Request $request,$id){
+                $request->validate([
+                    "role_id"=>"required",
+                ]);
+
+                $user = User::findOrFail($id);
+                $user['phoneNumber']=$request->phoneNumber;
+                $user['role_id']=$request->role_id;
+                $user->save();
+
+                return response()->json(["role_id" => $user]);
+              
+
+            }
+            //add user wih role 
+            public function adduser(Request $request){
+                $request->validate([
+                   
+                    "name"=>"string|required",
+                    "phoneNumber"=>"integer|required",
+                    "password"=>"string|required",
+                    "role_id"=>"integer|required",
+                ]);
+                $user = new User();
+                $user['name']=$request->name;
+                $user['phoneNumber']='+85620'.$request->phoneNumber;
+                $user['password']=bcrypt($request->password);
+                $user['role_id']= $request->role_id;
+                $user->save();
+                return response()->json(["data" => $user]);
             }
         
     

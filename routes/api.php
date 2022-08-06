@@ -39,6 +39,8 @@ Route::delete("/deleteusers/{id}", "App\http\Controllers\UserController@deleteus
 Route::post("/register", "App\http\Controllers\UserController@register");
 Route::get("/getalluser", "App\http\Controllers\UserController@getallusers");
 Route::post("/login", "App\http\Controllers\ApiAuthentication@userslogin");
+Route::put("/edituserrole/{id}", "App\http\Controllers\ApiAuthentication@edit_user_role");
+Route::post("/adduser", "App\http\Controllers\ApiAuthentication@adduser");
 
 // route for crud village_number 
 Route::post("/VillageNumber", "App\Http\Controllers\VillageNumberController@addVillageNumber");
