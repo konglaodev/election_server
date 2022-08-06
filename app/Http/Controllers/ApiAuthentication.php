@@ -51,7 +51,7 @@ return $response->json();
     }
     public function userslogin(Request $request){
             
-        $username = $request->phoneNumber;
+        $username = $request->username;
         $psw=$request->password;
         $users= User::where('phoneNumber',$username)->first();
         $populations= Population::where('phoneNumber',$username)->first();
@@ -65,7 +65,7 @@ return $response->json();
         ]);
         
          
-        return response()->json(['Token'=>$response->json(),'User'=>$users,'Population'=>$populations]);
+        return response()->json(['Token'=>$response->json(),'Users'=>$users,'Population'=>$populations]);
 
             }
         

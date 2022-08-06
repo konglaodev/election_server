@@ -23,14 +23,14 @@ class CreateUsersTable extends Migration
             //$table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->unsignedBigInteger("role_id");
-            $table->unsignedBigInteger("population_id");
+            // $table->unsignedBigInteger("population_id");
             $table->rememberToken();
             $table->timestamps();
         });
 
         Schema::table("users",function (Blueprint $table){
             $table->foreign("role_id")->references("id")->on("roles")->onDelete("CASCADE");
-            $table->foreign("population_id")->references("id")->on("Populations")->onDelete("CASCADE");
+            // $table->foreign("population_id")->references("id")->on("Populations")->onDelete("CASCADE");
         });
     }
 

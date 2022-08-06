@@ -14,7 +14,7 @@ class CandicateController extends Controller
     {
 
        
-        // $this->middleware("auth:api");
+        $this->middleware("auth:api");
     }
 
 
