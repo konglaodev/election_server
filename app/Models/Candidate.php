@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Candidate extends Model
 {
     use HasFactory;
-    protected $fillable = ["name","surname","dateOfBirth","degree","slogan","history","address","image"];
+    protected $fillable = ["name","surname","gender","dateOfBirth","degree","slogan","history","address","image"];
     public function votes()
     {
         return $this->hasMany(Vote::class);

@@ -12,6 +12,7 @@ class Population extends Model
     protected $fillable = 
     ["name",
     "surname", 
+    "gender",
     "phoneNumber",
     "dateOfBirth",
     "address",

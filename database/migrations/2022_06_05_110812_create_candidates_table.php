@@ -17,6 +17,7 @@ class CreateCandidatesTable extends Migration
             $table->bigIncrements("id");
             $table->string("name");
             $table->string('surname');
+            $table->string('gender');
             $table->date("dateOfBirth");
             $table->string("degree");
             $table->string("slogan");

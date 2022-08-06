@@ -79,6 +79,10 @@ Route::get("/getScoreAll", "App\Http\Controllers\VoteController@getScoreAll");
 // Route::post("/vote", "App\Http\Controllers\VoteController@");
 
 Route::post("/addVerify", "App\Http\Controllers\VerifyController@addVerify");
+Route::post("/CheckVerify/{id}", "App\Http\Controllers\VerifyController@CheckVerify");
+Route::get("/showverify", "App\Http\Controllers\VerifyController@showverify");
+Route::get("/showUserverify/{id}", "App\Http\Controllers\VerifyController@showUserverify");
+Route::put("/verifyUser/{id}", "App\Http\Controllers\VerifyController@verifyUser");
 
 //route test crud image can
 Route::post("/testcrud", "App\Http\Controllers\TestCrudController@store");

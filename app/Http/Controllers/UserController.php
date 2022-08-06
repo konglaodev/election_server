@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
 
-    public function __construct(){
-        $this->middleware('auth:api');
-    }
+    // public function __construct(){
+    //     $this->middleware('auth:api');
+    // }
   
     public function register(Request $request)
     {
@@ -27,7 +27,8 @@ class UserController extends Controller
 
 
         ]);
-        $status = "not_verify";
+        
+        $status = "verify";
         $phone = User::where('phoneNumber', '=', $request->username)->first();
 
 
@@ -35,14 +36,15 @@ class UserController extends Controller
         if ($phone) {
             return response()->json(["massage" => 'phone number is registered']);
         } else if (!$phone) {
+
             if ($population) {
-                $status = "verify";
                 
+                $status = "not_verify";
                 
             }
             $users = new User();
                 $users->name = $request->name;
-                $users->phoneNumber = "+856"+ $request->username;
+                $users->phoneNumber = "+85620". $request->username;
                 $users->password = bcrypt($request->password);
                 $users->status = $status;
                 $users->role_id = 3;

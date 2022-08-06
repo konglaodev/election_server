@@ -19,6 +19,7 @@ class PopulationController extends Controller
         $request->validate([
             "name"=>"string|required",
             "surname"=>"string|required",
+            "gender"=>"string|required",
             "phoneNumber"=>"string|required",
             "dateOfBirth"=>"date|required",
             "address"=>"string|required",
@@ -30,6 +31,7 @@ class PopulationController extends Controller
         $population = new Population();
         $population->name=$request->name;
         $population->surname=$request->surname;
+        $population->gender=$request->gender;
         $population->phoneNumber=$request->phoneNumber;
         $population->dateOfBirth=$request->dateOfBirth;
         $population->address=$request->address;
@@ -42,6 +44,7 @@ class PopulationController extends Controller
         $request->validate([
             "name"=>"string|required",
             "surname"=>"string|required",
+            "gender"=>"string|required",
             "phoneNumber"=>"string|required",
             "dateOfBirth"=>"date|required",
             "address"=>"string|required",
@@ -57,6 +60,7 @@ class PopulationController extends Controller
 
             $population['name']= $request->name;
             $population['surname']= $request->surname;
+            $population['gender']= $request->gender;
             $population['phoneNumber']= $request->phoneNumber;
             $population['dateOfBirth']= $request->dateOfBirth;
             $population['address']= $request->address;

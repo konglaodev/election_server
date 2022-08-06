@@ -14,7 +14,7 @@ class CandicateController extends Controller
     {
 
        
-        $this->middleware("auth:api");
+        // $this->middleware("auth:api");
     }
 
 
@@ -26,6 +26,7 @@ class CandicateController extends Controller
         $request->validate([
             "name" => "string|required",
             "surname" => "string|required",
+            "gender" => "string|required",
             "dateOfBirth" => "date|required",
             "degree" => "string|required",
             "slogan" => "string|required",
@@ -38,6 +39,7 @@ class CandicateController extends Controller
         $candidate = new Candidate();
         $candidate->name = $request->name;
         $candidate->surname = $request->surname;
+        $candidate->gender = $request->gender;
         $candidate->dateOfBirth = $request->dateOfBirth;
         $candidate->degree = $request->degree;
         $candidate->slogan = $request->slogan;
@@ -65,6 +67,7 @@ class CandicateController extends Controller
         $request->validate([
             "name" => "string|required",
             "surname" => "string|required",
+            "gender" => "string|required",
             "dateOfBirth" => "date|required",
             "degree" => "string|required",
             "slogan" => "string|required",
@@ -84,6 +87,7 @@ class CandicateController extends Controller
       //  $id = $request->id;
         $candidate['name'] = $request->name;
         $candidate['surname'] = $request->surname;
+        $candidate['gender'] = $request->gender;
         $candidate['dateOfBirth'] = $request->dateOfBirth;
         $candidate['degree'] = $request->degree;
         $candidate['slogan'] = $request->slogan;
