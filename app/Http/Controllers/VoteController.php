@@ -82,6 +82,7 @@ class VoteController extends Controller
       
         $votes = DB::table('votes')
         ->select(
+            'candidates.gender AS gender',
             'candidates.name AS candidate_name',
             'candidates.surname AS candidate_surname',
             'candidates.image AS candidate_image',
