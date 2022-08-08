@@ -39,7 +39,7 @@ class VoteController extends Controller
         // }
 
         if ($population_id) {
-            return response()->json(["massage" => 'ໂວດໄດ້ເທື່ອດຽວເດິກະໂປກ']);
+            return response()->json(["massage" => 'ໂວດໄດ້ເທື່ອດຽວເດິກະໂປກ'],400);
         }          
         
         $population = Population::where("id", "=", $request->population_id)->with("cencuses")->first();
@@ -51,7 +51,7 @@ class VoteController extends Controller
         ->where("populations.cencus_id",$current_population_cencus)
         ->first();
         if($check_vote_cencus){
-            return response()->json(["massage"=>"ສາມາດໂວດໄດ້ ບ້ານລະຄົນ"]);
+            return response()->json(["massage"=>"ສາມາດໂວດໄດ້ ບ້ານລະຄົນ"],400);
         }
         
         $vote = new Vote();
@@ -59,7 +59,7 @@ class VoteController extends Controller
             $vote->candidate_id = $request->candidate_id;
             
             $vote->save();
-            return response()->json(["massage" => 'voted', $vote]);
+            return response()->json(["massage" => 'ທ່ານ ເລືອກຕັ້ງສຳເລັດ','data' =>$vote]);
         
     }
     public function getScore(Request $request) {

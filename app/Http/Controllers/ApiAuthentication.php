@@ -93,6 +93,7 @@ return $response->json();
                     "password"=>"string|required",
                     "role_id"=>"integer|required",
                 ]);
+                
                 $user = new User();
                 $user['name']=$request->name;
                 $user['phoneNumber']='+85620'.$request->phoneNumber;

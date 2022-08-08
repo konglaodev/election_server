@@ -12,7 +12,7 @@ class PopulationController extends Controller
     //
     public function __construct()
     {
-        $this->middleware("isAdmin:api");
+        // $this->middleware("isAdmin:api");
     }
     public function create( Request $request){
 
@@ -69,7 +69,7 @@ class PopulationController extends Controller
             $population->save();
 
 
-            return response()->json(['status'=>'update success',$population]);
+            return response()->json(['status'=>'update success','data'=>$population]);
     }
  
     
@@ -84,7 +84,7 @@ class PopulationController extends Controller
     {
         $data = DB::table('populations')
             ->get();
-        return response()->json(['massage' => 'get succesefully', $data]);
+        return response()->json(['massage' => 'get succesefully','data' => $data]);
     }
     public function delete(Request $request, $id)
     {
@@ -92,7 +92,7 @@ class PopulationController extends Controller
         $id = DB::table('populations')
             ->where('id', $id)
             ->delete();
-        return response()->json(['massage' => 'delete success', $id]);
+        return response()->json(['massage' => 'delete success','data'=> $id]);
     }
  
 }

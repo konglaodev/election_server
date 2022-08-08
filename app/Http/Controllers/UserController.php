@@ -75,6 +75,13 @@ class UserController extends Controller
         $data =DB::table('users')
         ->where('id', $request->id)
         ->get();
+        if(!$users){
+            return response()->json(['data'=> 'ບໍ່ມີຂໍ້ມູນ']);
+            
+          
+        }
         return response()->json(['data'=> $data]);
+       
+       
     }
 }

@@ -51,7 +51,7 @@ Route::post("/VillageNumber", "App\Http\Controllers\VillageNumberController@addV
 Route::put("/VillageNumber/{id}", "App\Http\Controllers\VillageNumberController@update");
 Route::delete("/VillageNumber/{id}", "App\Http\Controllers\VillageNumberController@delete");
 //getall 
-Route::get("/VillageNumber/", "App\Http\Controllers\VillageNumberController@show");
+Route::get("/VillageNumber/{id}", "App\Http\Controllers\VillageNumberVillageNumberController@show");
 //get by id 
 Route::get("/VillageNumber/{id}", "App\Http\Controllers\VillageNumberController@showByid");
 
@@ -99,6 +99,7 @@ Route::get("/showimagesCandidate","App\http\controllers\ShowAllController@showim
 Route::get("/showcandidate","App\http\controllers\ShowAllController@showcandidate");
 Route::get("/sumvote_score_all","App\http\controllers\ShowAllController@sumvote_score_all");
 Route::get("/people_can_vote","App\http\controllers\ShowAllController@count_score_people_can_vote");
+Route::get("/showAllscore","App\http\controllers\ShowAllController@showAllscore");
 
 
 // route for test 
