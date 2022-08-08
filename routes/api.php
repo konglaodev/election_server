@@ -51,7 +51,7 @@ Route::post("/VillageNumber", "App\Http\Controllers\VillageNumberController@addV
 Route::put("/VillageNumber/{id}", "App\Http\Controllers\VillageNumberController@update");
 Route::delete("/VillageNumber/{id}", "App\Http\Controllers\VillageNumberController@delete");
 //getall 
-Route::get("/VillageNumber/{id}", "App\Http\Controllers\VillageNumberVillageNumberController@show");
+Route::get("/VillageNumber", "App\Http\Controllers\VillageNumberController@getAllvillage_numbers");
 //get by id 
 Route::get("/VillageNumber/{id}", "App\Http\Controllers\VillageNumberController@showByid");
 

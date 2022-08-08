@@ -44,7 +44,7 @@ class VillageNumberController extends Controller
             "number" => "string|required",
         ]);
 
-
+    
         $villages = VillageNumber::findOrFail($id);
         $villages['number'] = $request->number;
 

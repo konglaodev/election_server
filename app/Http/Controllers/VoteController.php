@@ -70,6 +70,14 @@ class VoteController extends Controller
         return response()->json($votes);
 
     }
+    public function getvote(Request $request) {
+      
+        $votes=DB::select('SELECT * from votes;
+        ');
+
+        return response()->json($votes);
+
+    }
     public function getScoreAll(Request $request) {
       
         $votes = DB::table('votes')
