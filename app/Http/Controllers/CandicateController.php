@@ -50,7 +50,7 @@ class CandicateController extends Controller
         $candidate->image = $candidate->storeCandidateImage($request->image);
         $candidate->save();
 
-        return response()->json(["data" => $candidate]);
+        
     }
 
 

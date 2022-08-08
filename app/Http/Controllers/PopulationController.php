@@ -78,7 +78,7 @@ class PopulationController extends Controller
         $data =DB::table('populations')
         ->where('id', $request->id)
         ->get();
-        return response()->json(['massage' => 'get ByID  succesefully', $data]);
+        return response()->json(['massage' => 'get ByID  succesefully', 'data'=>$data]);
     }
     public function index(Request $request)
     {

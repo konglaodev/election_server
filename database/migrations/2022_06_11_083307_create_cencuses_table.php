@@ -13,6 +13,7 @@ class CreateCencusesTable extends Migration
      */
     public function up()
     {
+
         Schema::create('cencuses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger("cencus_id");
@@ -23,6 +24,9 @@ class CreateCencusesTable extends Migration
         Schema::table("cencuses",function (Blueprint $table){
             $table->foreign("village_id")->references("id")->on("village_numbers")->onDelete("CASCADE");
         });
+
+        
+
     }
 
     /**

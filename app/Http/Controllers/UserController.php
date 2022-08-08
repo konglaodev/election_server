@@ -34,7 +34,7 @@ class UserController extends Controller
 
         $population = Population::where("phoneNumber", $request->username)->first();
         if ($phone) {
-            return response()->json(["massage" => 'phone number is registered']);
+            return response()->json(["massage" => 'phone number is registered'],400);
         } else if (!$phone) {
 
             if ($population) {
@@ -71,6 +71,20 @@ class UserController extends Controller
         return response()->json(['massage' => 'delete success', $data]);
     }
     public function getuserid(Request $request,$id){
+        $users = User::findOrFail($id);
+        $data =DB::table('users')
+        ->where('id', $request->id)
+        ->get();
+        if(!$users){
+            return response()->json(['data'=> 'ບໍ່ມີຂໍ້ມູນ']);
+            
+          
+        }
+        return response()->json(['data'=> $data]);
+       
+       
+    }
+    public function getuserdeatail(Request $request,$id){
         $users = User::findOrFail($id);
         $data =DB::table('users')
         ->where('id', $request->id)

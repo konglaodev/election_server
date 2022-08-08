@@ -13,7 +13,7 @@ class CencusController extends Controller
     {
 
         // check role 
-        $this->middleware("isAdmin:api");
+        // $this->middleware("isAdmin:api");
     }
     public function index(Request $request){
         $data = DB::table('cencuses')
@@ -30,12 +30,7 @@ class CencusController extends Controller
             ->get();
             return response()->json(['massage' => 'get cencuses ByID', $data]);
         }
-       
-      
-       
-          
-        
-       
+    
 }
     public function update(Request $request, $id){
         $request->validate([
@@ -60,7 +55,6 @@ class CencusController extends Controller
             ->delete();
         return response()->json(['massage' => 'delete success', $id]);
     }
-   
     public function create(Request $request)
     {
 

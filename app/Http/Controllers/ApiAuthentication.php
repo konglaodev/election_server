@@ -59,7 +59,7 @@ return $response->json();
         $response = Http::asForm()->post('http://localhost:8001/oauth/token', [
             'grant_type' => 'password',
             'client_id' => '2',
-            'client_secret' => 'QqutVEPuxNtp0jopj54Vl37m45CsZdkZw4P5PkSO',
+            'client_secret' => 'uGnpxV3YcMrhQgw8UCkon0VmuTATqmwSrlQ2t5pm',
             'username' => $username,
             'password' => $psw,
             'scope' => '',
@@ -75,11 +75,9 @@ return $response->json();
                     "role_id"=>"required",
                 ]);
 
-                $user = User::findOrFail($id);
-                $user['phoneNumber']=$request->phoneNumber;
+                $user = User::findOrFail($id); 
                 $user['role_id']=$request->role_id;
                 $user->save();
-
                 return response()->json(["role_id" => $user]);
               
 
@@ -93,7 +91,7 @@ return $response->json();
                     "password"=>"string|required",
                     "role_id"=>"integer|required",
                 ]);
-                
+
                 $user = new User();
                 $user['name']=$request->name;
                 $user['phoneNumber']='+85620'.$request->phoneNumber;

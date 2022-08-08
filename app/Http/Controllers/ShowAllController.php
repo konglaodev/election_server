@@ -30,4 +30,20 @@ class ShowAllController extends Controller
             $candidate = DB::select('SELECT candidates.gender, candidates.name ,candidates.surname  ,COUNT( votes.population_id) as score FROM votes,candidates WHERE votes.candidate_id= candidates.id;');
             return response()->json(['data'=>$candidate]);
     }
+    public function showdetail(Request $request,$id){
+        $users = DB::select('SELECT users.name,users.status,users.phoneNumber,populations.gender,populations.name,populations.surname,populations.phoneNumber, verifies.picture_verify,verifies.status, populations.image FROM users,verifies,populations WHERE populations.phoneNumber=users.phoneNumber AND verifies.user_id = users.id'.$id);
+
+        return response()->json(['data'=>$users]);
+   
+}
+public function canvoted(){
+        $users = DB::select('SELECT COUNT(cencuses.id) as canvoted FROM cencuses;');
+
+        return response()->json(['data'=>$users]);
+}
+public function reportVoting(){
+        $users = DB::select('SELECT populations.gender as pgen, populations.name as pname,populations.surname as psur ,candidates.gender as gcan, candidates.name cname,candidates.surname as cansur FROM candidates,votes,populations WHERE populations.id = votes.population_id AND candidates.id =votes.candidate_id;');
+
+        return response()->json(['data'=>$users]);
+}
 }

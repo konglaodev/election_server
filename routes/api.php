@@ -39,6 +39,7 @@ Route::delete("/deleteusers/{id}", "App\http\Controllers\UserController@deleteus
 Route::post("/register", "App\http\Controllers\UserController@register");
 Route::get("/getalluser", "App\http\Controllers\UserController@getallusers");
 Route::get("/getuserid/{id}", "App\http\Controllers\UserController@getuserid");
+Route::get("/showdetail/{id}", "App\http\Controllers\UserController@showdetail");
 
 
 Route::post("/login", "App\http\Controllers\ApiAuthentication@userslogin");
@@ -100,6 +101,8 @@ Route::get("/showcandidate","App\http\controllers\ShowAllController@showcandidat
 Route::get("/sumvote_score_all","App\http\controllers\ShowAllController@sumvote_score_all");
 Route::get("/people_can_vote","App\http\controllers\ShowAllController@count_score_people_can_vote");
 Route::get("/showAllscore","App\http\controllers\ShowAllController@showAllscore");
+Route::get("/canvoted","App\http\controllers\ShowAllController@canvoted");
+Route::get("/reportVoting","App\http\controllers\ShowAllController@reportVoting");
 
 
 // route for test 
