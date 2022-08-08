@@ -38,6 +38,9 @@ Route::get("/checkauth", "App\Http\Controllers\superAdminController@getData");
 Route::delete("/deleteusers/{id}", "App\http\Controllers\UserController@deleteusers");
 Route::post("/register", "App\http\Controllers\UserController@register");
 Route::get("/getalluser", "App\http\Controllers\UserController@getallusers");
+Route::get("/getuserid/{id}", "App\http\Controllers\UserController@getuserid");
+
+
 Route::post("/login", "App\http\Controllers\ApiAuthentication@userslogin");
 Route::put("/edituserrole/{id}", "App\http\Controllers\ApiAuthentication@edit_user_role");
 Route::post("/adduser", "App\http\Controllers\ApiAuthentication@adduser");
@@ -89,6 +92,14 @@ Route::put("/verifyUser/{id}", "App\Http\Controllers\VerifyController@verifyUser
 //route test crud image can
 Route::post("/testcrud", "App\Http\Controllers\TestCrudController@store");
 Route::put("/testcrud", "App\Http\Controllers\TestCrudController@update");
+
+
+
+Route::get("/showimagesCandidate","App\http\controllers\ShowAllController@showimagesCandidate");
+Route::get("/showcandidate","App\http\controllers\ShowAllController@showcandidate");
+Route::get("/sumvote_score_all","App\http\controllers\ShowAllController@sumvote_score_all");
+Route::get("/people_can_vote","App\http\controllers\ShowAllController@count_score_people_can_vote");
+
 
 // route for test 
 Route::get("test", function () {

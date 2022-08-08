@@ -70,4 +70,11 @@ class UserController extends Controller
             ->delete();
         return response()->json(['massage' => 'delete success', $data]);
     }
+    public function getuserid(Request $request,$id){
+        $users = User::findOrFail($id);
+        $data =DB::table('users')
+        ->where('id', $request->id)
+        ->get();
+        return response()->json(['data'=> $data]);
+    }
 }

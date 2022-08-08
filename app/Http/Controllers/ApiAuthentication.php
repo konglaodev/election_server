@@ -52,7 +52,7 @@ return $response->json();
     //login function
     public function userslogin(Request $request){
             
-        $username = $request->username;
+        $username = '+85620'. $request->username;
         $psw=$request->password;
         $users= User::where('phoneNumber',$username)->first();
         $populations= Population::where('phoneNumber',$username)->first();
@@ -67,10 +67,9 @@ return $response->json();
         
          
         return response()->json(['Token'=>$response->json(),'Users'=>$users,'Population'=>$populations]);
-                
-
+    }
         //edit users
-            }
+            
             public function edit_user_role(Request $request,$id){
                 $request->validate([
                     "role_id"=>"required",

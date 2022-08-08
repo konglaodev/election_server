@@ -18,7 +18,7 @@ class VoteController extends Controller
     {
 
         // check role 
-        $this->middleware("auth:api");
+        // $this->middleware("auth:api");
     }
     public function create(Request $request)
     {
