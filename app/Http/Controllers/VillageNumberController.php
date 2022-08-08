@@ -10,7 +10,7 @@ class VillageNumberController extends Controller
 {
     public function __construct()
     {
-        $this->middleware("isAdmin:api");
+        // $this->middleware("isAdmin:api");
     }
 
     //show data all 
@@ -18,7 +18,7 @@ class VillageNumberController extends Controller
     {
         $data = DB::table('village_numbers')
             ->get();
-        return response()->json(['massage' => 'get succesefully', $data]);
+        return response()->json(['massage' => 'get succesefully','data' => $data]);
     }
 
 
@@ -35,7 +35,7 @@ class VillageNumberController extends Controller
         $villages->number = $request->number;
         $villages->save();
 
-        return response()->json(["data" => $villages]);
+        return response()->json(['data' => $villages]);
     }
 
     public function update(Request $request, $id)
@@ -51,7 +51,7 @@ class VillageNumberController extends Controller
         $villages->save();
 
 
-        return response()->json(['status' => 'update success', $villages]);
+        return response()->json(['status' => 'update success', 'data'=>$villages]);
     }
 
 
@@ -62,7 +62,7 @@ class VillageNumberController extends Controller
         $data = DB::table('village_numbers')
             ->where('id', $id)
             ->delete();
-        return response()->json(['massage' => 'delete success', $data]);
+        return response()->json(['massage' => 'delete success', 'data'=>$data]);
     }
 
 
