@@ -89,6 +89,8 @@ Route::post("/CheckVerify/{id}", "App\Http\Controllers\VerifyController@CheckVer
 Route::get("/showverify", "App\Http\Controllers\VerifyController@showverify");
 Route::get("/showUserverify/{id}", "App\Http\Controllers\VerifyController@showUserverify");
 Route::put("/verifyUser/{id}", "App\Http\Controllers\VerifyController@verifyUser");
+Route::get("/showall", "App\Http\Controllers\VerifyController@showall");
+Route::put("/updatevery/{id}", "App\Http\Controllers\VerifyController@update");
 
 //route test crud image can
 Route::post("/testcrud", "App\Http\Controllers\TestCrudController@store");

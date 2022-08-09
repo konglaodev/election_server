@@ -74,14 +74,41 @@ return response()->json(['dataUsers' => $user]);
         $request->validate([
             "status" => "string|required",
         ]);
+
         $verifies = Verify::findOrFail($id);
         $verifies['status'] = $request->status;
         $verifies->save();
         return response()->json(['status' => 'update success', $verifies]);
     }
-    public function showdetail_before_verify( Request $request){
+    public function getall()
+    {
+        
+  
+    }
+    public function showall( ){
+        $candidate = DB::select('SELECT *FROM verifies ');
+        return response()->json(['data'=>$candidate]);
 
+    }
 
+    public function update(Request $request, $id){
+        $request->validate([
+            "status"=>"string|required",
+          
 
+        ]);
+        
+        $statusverify= "checked";
+
+            $user = User::findOrFail($request->user_id);
+            $user['status']= $request->status;
+            $user->save();
+            
+          
+        $verify  = Verify::findOrFail($id);
+             $verify['status'] ="checked";
+             $verify->save();
+        
+            return response()->json(['status'=>'verify']);
     }
 }
