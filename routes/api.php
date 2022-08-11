@@ -68,7 +68,7 @@ Route::get("/cencus", "App\Http\Controllers\CencusController@index");
 //populations
 
 Route::post("/populations", "App\Http\Controllers\PopulationController@create");
-Route::put("/populations/{id}", "App\Http\Controllers\PopulationController@update");
+Route::put("/updatePopulations/{id}", "App\Http\Controllers\PopulationController@updatePopulations");
 Route::delete("/populations/{id}", "App\Http\Controllers\PopulationController@delete");
 
 Route::get("/populations", "App\Http\Controllers\PopulationController@index");
@@ -105,6 +105,12 @@ Route::get("/people_can_vote","App\http\controllers\ShowAllController@count_scor
 Route::get("/showAllscore","App\http\controllers\ShowAllController@showAllscore");
 Route::get("/canvoted","App\http\controllers\ShowAllController@canvoted");
 Route::get("/reportVoting","App\http\controllers\ShowAllController@reportVoting");
+Route::get("/showuserverify","App\http\controllers\ShowAllController@showuserverify");
+
+
+//province
+Route::get("/showDistrict/{id}","App\http\controllers\ShowAllController@showDistrict");
+Route::get("/showprovince","App\http\controllers\ShowAllController@showprovince");
 
 
 // route for test 

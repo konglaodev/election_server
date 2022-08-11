@@ -18,7 +18,7 @@ class CencusController extends Controller
     public function index(Request $request){
         $data = DB::table('cencuses')
         ->get();
-    return response()->json(['massage' => 'get data cencuse', $data]);
+    return response()->json(['massage' => 'get data cencuse','data'=> $data]);
     }
 
 

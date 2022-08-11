@@ -28,14 +28,19 @@ class PopulationController extends Controller
         
         ]);
 
+        $md5Name = md5_file($request->image->getRealPath());
+        $guessExtension = $request->image->guessExtension();
+        $fullName = $md5Name . '.' . $guessExtension;
+        $request->image->storeAs('populations_images', $fullName, 'public');
+
         $population = new Population();
         $population->name=$request->name;
         $population->surname=$request->surname;
         $population->gender=$request->gender;
-        $population->phoneNumber=$request->phoneNumber;
+        $population->phoneNumber='+85620'.$request->phoneNumber;
         $population->dateOfBirth=$request->dateOfBirth;
         $population->address=$request->address;
-        $population->image = $population->storePopulationsImage($request->image);
+        $population->image=$fullName;
         $population->cencus_id= $request->cencus_id;
         $population->save();     
         return response()->json(["data" => $population]);

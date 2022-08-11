@@ -12,7 +12,6 @@ class VillageNumberController extends Controller
     {
         // $this->middleware("isAdmin:api");
     }
-
     //show data all 
     public function getAllvillage_numbers(Request $request)
     {
@@ -20,19 +19,13 @@ class VillageNumberController extends Controller
             ->get();
         return response()->json(['massage' => 'get succesefully','data' => $data]);
     }
-
-
-
     public function addVillageNumber(Request $request)
     {
         $request->validate([
-
             "number" => "string|required",
-
         ]);
-
         $villages = new VillageNumber();
-        $villages->number = $request->number;
+        $villages->number ='ໜ່ວຍ '. $request->number;
         $villages->save();
 
         return response()->json(['data' => $villages]);
@@ -40,17 +33,13 @@ class VillageNumberController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $request->validate([
             "number" => "string|required",
         ]);
-
-    
         $villages = VillageNumber::findOrFail($id);
         $villages['number'] = $request->number;
-
         $villages->save();
-
-
         return response()->json(['status' => 'update success', 'data'=>$villages]);
     }
 
@@ -65,8 +54,6 @@ class VillageNumberController extends Controller
         return response()->json(['massage' => 'delete success', 'data'=>$data]);
     }
 
-
-    
     function showByid(Request $request, $id)
     {
         $id = $request->id;
@@ -86,6 +73,7 @@ class VillageNumberController extends Controller
                 return response()->json(['massage' => 'get succesefully', $data]);
                 
             }else{
+
                 return response()->json(['massage' => 'no response data',$data]);
             }
 

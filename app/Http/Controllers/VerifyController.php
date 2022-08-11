@@ -22,14 +22,10 @@ class VerifyController extends Controller
         $request->validate([
             "user_id" => "string|required",
             "picture_verify" => "required",
-
-
         ]);
         // get fillable from Model verifies and send request to data table 
         $Verifys = new Verify();
         $Verifys->user_id = $request->user_id;
-
-
         // add image from function storeverifiesImage in 
         $Verifys->picture_verify = $Verifys->storeVerifyImage($request->picture_verify);
 
@@ -56,18 +52,22 @@ class VerifyController extends Controller
             ->get();
         return response()->json(["data" => $data]);
     }
-    public function showUserverify(Request $request, $id)
-    {
-        $id = $request->id;
+//     public function showUserverify(Request $request, $id)
+//     {
+//         $id = $request->id;
         
-$user=DB::select('SELECT users.name,users.status,users.phoneNumber,populations.gender,populations.name,populations.surname,populations.phoneNumber, verifies.picture_verify,verifies.status, populations.image
-FROM users,verifies,populations 
-WHERE populations.phoneNumber=users.phoneNumber AND users.id = .' .$id.'');
+// $user= DB::select('SELECT users.name, users.phoneNumber,users.status, verifies.picture_verify FROM verifies,users WHERE verifies.user_id = users.id AND verifies.id=.' .$id.';');
 
 
-return response()->json(['dataUsers' => $user]);
+// return response()->json(['dataUsers' => $user]);
      
-    }
+//     }
+    public function showUserverify(Request $request,$id){
+        $users = DB::select('SELECT users.name, users.phoneNumber,users.status, verifies.picture_verify FROM verifies,users WHERE verifies.user_id = users.id AND verifies.id='.$id);
+
+        return response()->json(['data'=>$users]);
+   
+}
 
     public function verifyUser(Request $request, $id)
     {
@@ -82,12 +82,12 @@ return response()->json(['dataUsers' => $user]);
     }
     public function getall()
     {
-        
-  
+
     }
     public function showall( ){
-        $candidate = DB::select('SELECT *FROM verifies ');
-        return response()->json(['data'=>$candidate]);
+        $verify= DB::select('SELECT users.id,users.name , users.phoneNumber,users.status,verifies.picture_verify,users.status,verifies.created_at FROM verifies,users WHERE verifies.user_id = users.id;');
+ 
+        return response()->json(['data'=>$verify]);
 
     }
 
@@ -97,17 +97,13 @@ return response()->json(['dataUsers' => $user]);
           
 
         ]);
-        
-        $statusverify= "checked";
+            
 
-            $user = User::findOrFail($request->user_id);
+            $user = User::findOrFail($id);
             $user['status']= $request->status;
             $user->save();
             
           
-        $verify  = Verify::findOrFail($id);
-             $verify['status'] ="checked";
-             $verify->save();
         
             return response()->json(['status'=>'verify']);
     }

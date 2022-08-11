@@ -46,4 +46,49 @@ public function reportVoting(){
 
         return response()->json(['data'=>$users]);
 }
+
+
+
+public function showDistrict( Request $request,$id){
+
+       $province= DB::select('select name_lao  from ampher_lao where province_lao_id='.$id.';');
+
+       return response()->json(['data'=>$province]);
+        
+}
+public function showprovince(){
+
+       $province= DB::select('select * from province_lao;');
+
+       return response()->json(['data'=>$province]);
+        
+}
+//show district and province
+
+// verify data show 
+
+
+public function showuserverify(){
+
+        $verify= DB::select('SELECT users.id ,users.name , users.phoneNumber,users.status,verifies.picture_verify,users.status,verifies.created_at FROM verifies,users WHERE verifies.user_id = users.id;');
+ 
+        return response()->json(['data'=>$verify]);
+         
+ }
+public function verifyAll(){
+
+        $verify= DB::select('SELECT populations.gender,populations.name, populations.surname,populations.phoneNumber,populations.image,populations.image,users.status FROM populations,users WHERE users.phoneNumber= populations.phoneNumber;');
+ 
+        return response()->json(['data'=>$verify]);
+         
+ }
+ 
+public function showpopulations(){
+
+        $verify= DB::select('SELECT populations.gender,populations.name, populations.surname,populations.phoneNumber,populations.image,populations.image,users.status FROM populations,users WHERE users.phoneNumber= populations.phoneNumber;');
+ 
+        return response()->json(['data'=>$verify]);
+         
+ }
+
 }
