@@ -68,11 +68,12 @@ Route::get("/cencus", "App\Http\Controllers\CencusController@index");
 //populations
 
 Route::post("/populations", "App\Http\Controllers\PopulationController@create");
-Route::put("/updatePopulations/{id}", "App\Http\Controllers\PopulationController@updatePopulations");
+Route::put("/populations/{id}", "App\Http\Controllers\PopulationController@update");
 Route::delete("/populations/{id}", "App\Http\Controllers\PopulationController@delete");
 
 Route::get("/populations", "App\Http\Controllers\PopulationController@index");
 Route::get("/populations/{id}", "App\Http\Controllers\PopulationController@getPulationsById");
+Route::get("/showpopulations", "App\Http\Controllers\PopulationController@showpopulations");
 
 
 
@@ -106,6 +107,9 @@ Route::get("/showAllscore","App\http\controllers\ShowAllController@showAllscore"
 Route::get("/canvoted","App\http\controllers\ShowAllController@canvoted");
 Route::get("/reportVoting","App\http\controllers\ShowAllController@reportVoting");
 Route::get("/showuserverify","App\http\controllers\ShowAllController@showuserverify");
+
+//ຂໍ້ມູນປະຊາກອນ ທຽບຈາກເບີໂທ 
+Route::get("/profilestatus/{id}","App\http\controllers\ShowAllController@profile_status");
 
 
 //province

@@ -26,23 +26,24 @@ class UserController extends Controller
 
         ]);
         
-        $status = "verify";
-        $phone = User::where('phoneNumber', '=', $request->username)->first();
+        $status = "not_verify";
+        
+        $phone = User::where('phoneNumber', '=','+85620'.$request->username)->first();
 
 
-        $population = Population::where("phoneNumber", $request->username)->first();
+        $population = Population::where("phoneNumber",'=','+85620'.$request->username)->first();
         if ($phone) {
             return response()->json(["massage" => 'phone number is registered'],400);
         } else if (!$phone) {
 
             if ($population) {
                 
-                $status = "not_verify";
+                $status = "verify";
                 
             }
             $users = new User();
                 $users->name = $request->name;
-                $users->phoneNumber = "+85620". $request->username;
+                $users->phoneNumber ='+85620'. $request->username;
                 $users->password = bcrypt($request->password);
                 $users->status = $status;
                 $users->role_id = 3;

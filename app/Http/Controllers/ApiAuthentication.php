@@ -24,31 +24,7 @@ return $response->json();
     }
 
 
-    public function register( Request $request) {
-        $request->validate([
-            "name"=>"string|required",
-            "phoneNumber"=>"string|required",
-            "password"=>"string|required",
-            "status"=>"string|required",
-            
-        ]);
-        $status = "not_verify"; 
-        $population = Population::where("phoneNumber",$request->phoneNumber)->first();
-        if($population){
-            $status="verify";
-        }
-
-        $users = new User();
-        $users->name = $request->name;
-        $users->phoneNumber = $request->phoneNumber;
-        $users->password =bcrypt($request->password);
-        $users->status =  $status;
-        $users->role_id =3;
-        $users->save();
-
-        return response()->json(["data"=>$users]);
-
-    }
+   
     //login function
     public function userslogin(Request $request){
             

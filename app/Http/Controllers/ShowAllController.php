@@ -82,10 +82,22 @@ public function verifyAll(){
         return response()->json(['data'=>$verify]);
          
  }
- 
+
 public function showpopulations(){
 
         $verify= DB::select('SELECT populations.gender,populations.name, populations.surname,populations.phoneNumber,populations.image,populations.image,users.status FROM populations,users WHERE users.phoneNumber= populations.phoneNumber;');
+ 
+        return response()->json(['data'=>$verify]);
+         
+ }
+
+ // profile page 
+
+// ສະແດງລາຍຂໍ້ມູນປະຊາກອນທີ່ໄດ້ຮັບການຢຶນຢັນ
+
+ public function profile_status(Request $request, $id){
+                $user_d= $id;
+        $verify= DB::select('SELECT users.id ,users.name,users.status ,users.phoneNumber,roles.name as rolesname,populations.gender,populations.name,populations.surname ,populations.phoneNumber,populations.dateOfBirth,populations.address,populations.image,cencuses.cencus_id FROM users,populations,cencuses,roles WHERE users.phoneNumber=populations.phoneNumber AND users.role_id= roles.id AND cencuses.id =populations.cencus_id AND users.id = '.$user_d.';');
  
         return response()->json(['data'=>$verify]);
          

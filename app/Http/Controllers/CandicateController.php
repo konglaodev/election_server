@@ -64,25 +64,18 @@ class CandicateController extends Controller
     }
     public function update(Request $request,$id)
     {
-        $request->validate([
-            "name" => "string|required",
-            "surname" => "string|required",
-            "gender" => "string|required",
-            "dateOfBirth" => "date|required",
-            "degree" => "string|required",
-            "slogan" => "string|required",
-            "history" => "string|required",
-            "address" => "string|required",
-            "image" => "image|required",
-        ]);
+      
        
         $candidate = Candidate::findOrFail($id);
        // $candidate = array();
-      
-            $md5Name = md5_file($request->image->getRealPath());
-            $guessExtension = $request->image->guessExtension();
-            $fullName = $md5Name . '.' . $guessExtension;
-            $request->image->storeAs('candidate_images', $fullName, 'public');
+      if($request->image != null){
+        
+        $md5Name = md5_file($request->image->getRealPath());
+        $guessExtension = $request->image->guessExtension();
+        $fullName = $md5Name . '.' . $guessExtension;
+        $request->image->storeAs('candidate_images', $fullName, 'public');
+        $candidate['image'] = $fullName;
+      }
         
       //  $id = $request->id;
         $candidate['name'] = $request->name;
@@ -93,7 +86,7 @@ class CandicateController extends Controller
         $candidate['slogan'] = $request->slogan;
         $candidate['history'] = $request->history;
         $candidate['address'] = $request->address;
-        $candidate['image'] = $fullName;
+      
         $candidate->save();
 
         // $data_update = DB::table('candidates')

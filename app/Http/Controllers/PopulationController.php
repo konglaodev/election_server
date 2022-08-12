@@ -6,6 +6,7 @@ use App\Models\Population;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Mockery\Undefined;
 
 class PopulationController extends Controller
 {
@@ -46,22 +47,16 @@ class PopulationController extends Controller
         return response()->json(["data" => $population]);
     }
     public function update(Request $request, $id){
-        $request->validate([
-            "name"=>"string|required",
-            "surname"=>"string|required",
-            "gender"=>"string|required",
-            "phoneNumber"=>"string|required",
-            "dateOfBirth"=>"date|required",
-            "address"=>"string|required",
-            "image"=>"image|required",
-            "cencus_id"=>"required",
-        ]);
+        
 
         $population = Population::findOrFail($id);
-        $md5Name = md5_file($request->image->getRealPath());
-            $guessExtension = $request->image->guessExtension();
-            $fullName = $md5Name . '.' . $guessExtension;
-            $request->image->storeAs('populations_images', $fullName, 'public');
+            if($request->image != null){
+                $md5Name = md5_file($request->image->getRealPath());
+                $guessExtension = $request->image->guessExtension();
+                $fullName = $md5Name . '.' . $guessExtension;
+                $request->image->storeAs('populations_images', $fullName, 'public');
+                $population['image']= $fullName;
+            }
 
             $population['name']= $request->name;
             $population['surname']= $request->surname;
@@ -69,7 +64,7 @@ class PopulationController extends Controller
             $population['phoneNumber']= $request->phoneNumber;
             $population['dateOfBirth']= $request->dateOfBirth;
             $population['address']= $request->address;
-            $population['image']= $fullName;
+         
             $population['cencus_id']= $request->cencus_id;
             $population->save();
 
@@ -90,6 +85,12 @@ class PopulationController extends Controller
         $data = DB::table('populations')
             ->get();
         return response()->json(['massage' => 'get succesefully','data' => $data]);
+    }
+    public function showpopulations()
+    {
+        $verify= DB::select('SELECT populations.gender,populations.name,populations.surname,populations.image,populations.dateOfBirth,populations.cencus_id    FROM populations, votes WHERE populations.id = votes.population_id;');
+ 
+        return response()->json(['data'=>$verify]);
     }
     public function delete(Request $request, $id)
     {
