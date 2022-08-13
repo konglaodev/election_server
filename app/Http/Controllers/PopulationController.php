@@ -38,7 +38,7 @@ class PopulationController extends Controller
         $population->name=$request->name;
         $population->surname=$request->surname;
         $population->gender=$request->gender;
-        $population->phoneNumber='+85620'.$request->phoneNumber;
+        $population->phoneNumber=$request->phoneNumber;
         $population->dateOfBirth=$request->dateOfBirth;
         $population->address=$request->address;
         $population->image=$fullName;
@@ -50,7 +50,7 @@ class PopulationController extends Controller
         
 
         $population = Population::findOrFail($id);
-            if($request->image != null){
+            if($request->image !== null && $request->image !== 'null'){
                 $md5Name = md5_file($request->image->getRealPath());
                 $guessExtension = $request->image->guessExtension();
                 $fullName = $md5Name . '.' . $guessExtension;

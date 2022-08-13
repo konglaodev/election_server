@@ -27,7 +27,7 @@ class ShowAllController extends Controller
             return response()->json(['data'=>$candidate]);
     }
     public function showAllscore(){
-            $candidate = DB::select('SELECT candidates.gender, candidates.name ,candidates.surname  ,COUNT( votes.population_id) as score FROM votes,candidates WHERE votes.candidate_id= candidates.id;');
+            $candidate = DB::select('SELECT candidates.image, candidates.gender, candidates.name ,candidates.surname  ,COUNT( votes.population_id) as score FROM votes,candidates WHERE votes.candidate_id= candidates.id;');
             return response()->json(['data'=>$candidate]);
     }
     public function showdetail(Request $request,$id){
@@ -80,7 +80,15 @@ public function verifyAll(){
         $verify= DB::select('SELECT populations.gender,populations.name, populations.surname,populations.phoneNumber,populations.image,populations.image,users.status FROM populations,users WHERE users.phoneNumber= populations.phoneNumber;');
  
         return response()->json(['data'=>$verify]);
+        //SELECT populations.gender as gender, populations.name as name, populations.surname as surname , populations.image as image , populations.cencus_id as cencus FROM users,populations WHERE users.phoneNumber = populations.phoneNumber and users.status='verify';
          
+ }
+ public function showpeoplecanvote(){
+        $veri="verify";
+        $verify= DB::select("SELECT populations.gender as gender, populations.name as name, populations.surname as surname ,populations.phoneNumber,populations.dateOfBirth, populations.image as image , populations.cencus_id as cencus FROM users,populations WHERE users.phoneNumber = populations.phoneNumber and users.status='verify';");
+ 
+        return response()->json(['data'=>$verify]);
+      
  }
 
 public function showpopulations(){

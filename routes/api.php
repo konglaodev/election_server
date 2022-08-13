@@ -87,7 +87,7 @@ Route::get("/getScoreAll", "App\Http\Controllers\VoteController@getScoreAll");
 
 Route::post("/addVerify", "App\Http\Controllers\VerifyController@addVerify");
 Route::post("/CheckVerify/{id}", "App\Http\Controllers\VerifyController@CheckVerify");
-Route::get("/showverify", "App\Http\Controllers\VerifyController@showverify");
+Route::get("/showverify/{id}", "App\Http\Controllers\VerifyController@showverify");
 Route::get("/showUserverify/{id}", "App\Http\Controllers\VerifyController@showUserverify");
 Route::put("/verifyUser/{id}", "App\Http\Controllers\VerifyController@verifyUser");
 Route::get("/showall", "App\Http\Controllers\VerifyController@showall");
@@ -107,6 +107,7 @@ Route::get("/showAllscore","App\http\controllers\ShowAllController@showAllscore"
 Route::get("/canvoted","App\http\controllers\ShowAllController@canvoted");
 Route::get("/reportVoting","App\http\controllers\ShowAllController@reportVoting");
 Route::get("/showuserverify","App\http\controllers\ShowAllController@showuserverify");
+Route::get("/showpeoplecanvote","App\http\controllers\ShowAllController@showpeoplecanvote");
 
 //ຂໍ້ມູນປະຊາກອນ ທຽບຈາກເບີໂທ 
 Route::get("/profilestatus/{id}","App\http\controllers\ShowAllController@profile_status");

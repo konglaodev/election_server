@@ -47,10 +47,12 @@ class VerifyController extends Controller
     }
     public function showverify(Request $request, $id)
     {
-        $verifies = Verify::findOrFail($id);
+        //$verifies = Verify::findOrFail($id);
+        
         $data = DB::table('verifies')
-            ->where('id', $request->id)
-            ->get();
+            ->where('user_id', $request->id)
+            ->orderBy("id","desc")
+            ->first();
         return response()->json(["data" => $data]);
     }
 //     public function showUserverify(Request $request, $id)

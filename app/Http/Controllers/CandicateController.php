@@ -68,7 +68,9 @@ class CandicateController extends Controller
        
         $candidate = Candidate::findOrFail($id);
        // $candidate = array();
-      if($request->image != null){
+  
+      
+      if($request->image !== null && $request->image !== "null"){
         
         $md5Name = md5_file($request->image->getRealPath());
         $guessExtension = $request->image->guessExtension();
@@ -92,7 +94,7 @@ class CandicateController extends Controller
         // $data_update = DB::table('candidates')
         //     ->where('id', $id)
         //     ->update($candidate);
-        return response()->json(['status' => 'update success', $candidate]);
+        return response()->json(['status' => 'update success','data'=> $candidate]);
     }
 
 
