@@ -85,6 +85,10 @@ Route::get("/getScoreAll", "App\Http\Controllers\VoteController@getScoreAll");
 // Route::post("/vote", "App\Http\Controllers\VoteController@update");
 // Route::post("/vote", "App\Http\Controllers\VoteController@");
 
+Route::post("/addimage", "App\Http\Controllers\ElectionController@addimage");
+Route::get("/elections", "App\Http\Controllers\ElectionController@show");
+
+
 Route::post("/addVerify", "App\Http\Controllers\VerifyController@addVerify");
 Route::post("/CheckVerify/{id}", "App\Http\Controllers\VerifyController@CheckVerify");
 Route::get("/showverify/{id}", "App\Http\Controllers\VerifyController@showverify");
@@ -108,6 +112,13 @@ Route::get("/canvoted","App\http\controllers\ShowAllController@canvoted");
 Route::get("/reportVoting","App\http\controllers\ShowAllController@reportVoting");
 Route::get("/showuserverify","App\http\controllers\ShowAllController@showuserverify");
 Route::get("/showpeoplecanvote","App\http\controllers\ShowAllController@showpeoplecanvote");
+//ຜູ້ທີ່ໄດ້ຮັບສີດ
+Route::get("/peoplecanvoteAndChecked","App\http\controllers\ShowAllController@peoplecanvoteAndChecked");
+Route::get("/populationAgeCanvote","App\http\controllers\ShowAllController@populationAgeCanvote");
+Route::get("/populationAgeCanvoteNotverify","App\http\controllers\ShowAllController@populationAgeCanvoteNotverify");
+//ຄົນທີ່ຍັງບໍ່ໂວດ
+Route::get("/peopleNotvote
+","App\http\controllers\ShowAllController@peopleNotvote");
 
 //ຂໍ້ມູນປະຊາກອນ ທຽບຈາກເບີໂທ 
 Route::get("/profilestatus/{id}","App\http\controllers\ShowAllController@profile_status");

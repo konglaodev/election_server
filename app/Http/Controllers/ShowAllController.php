@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Population;
+use App\Models\Verify;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -37,7 +38,7 @@ class ShowAllController extends Controller
    
 }
 public function canvoted(){
-        $users = DB::select('SELECT COUNT(cencuses.id) as canvoted FROM cencuses;');
+        $users = DB::select("SELECT COUNT(populations.id) as canvoted FROM users,populations,cencuses WHERE populations.cencus_id= cencuses.id AND populations.phoneNumber = users.phoneNumber AND users.status='Verify';");
 
         return response()->json(['data'=>$users]);
 }
@@ -109,6 +110,39 @@ public function showpopulations(){
  
         return response()->json(['data'=>$verify]);
          
+ }
+ public function peopleNotvote(){
+        $vote = DB::select("SELECT populations.id,populations.gender,populations.name,populations.surname,populations.phoneNumber,populations.dateOfBirth,populations.address,populations.image,cencuses.cencus_id ,users.status FROM users,populations,cencuses WHERE populations.phoneNumber = users.phoneNumber AND populations.cencus_id = cencuses.id and users.status='verify' AND populations.id NOT in (SELECT votes.population_id FROM votes);");
+        return response()->json(['data'=>$vote]);
+        
+ }
+
+//ຜູ້ທີ່ໄດ້ຮັບສີດ ແລະ ຜ່ານການກວດ
+public function peoplecanvoteAndChecked(){
+        $vote = DB::select("SELECT populations.id,populations.gender,populations.name,populations.surname,populations.phoneNumber,populations.dateOfBirth,populations.address,populations.image,cencuses.cencus_id ,users.status FROM users,populations,cencuses WHERE populations.phoneNumber = users.phoneNumber AND populations.cencus_id = cencuses.id and users.status='verify';");
+        return response()->json(['data'=>$vote]);
+        
+ }
+// ຄົນທີ່ອາຍຸຮອດ18 ປີ 
+public function populationAgeCanvote(){
+        $vote = DB::select("SELECT populations.id, populations.gender, populations.name,populations.surname,populations.phoneNumber,populations.dateOfBirth FROM populations WHERE   populations.id NOT IN (SELECT votes.population_id FROM votes) AND 
+        populations.dateOfBirth < '2013-12-31' AND populations.dateOfBirth != '0000-00-00'");
+        return response()->json(['data'=>$vote]);
+        
+ }
+// public function populationAgeCanvoteNotverify(){
+//         $vote = DB::select("SELECT populations.id, populations.gender, populations.name,populations.surname,populations.phoneNumber,populations.dateOfBirth FROM populations WHERE   populations.id NOT IN (SELECT votes.population_id FROM votes) AND 
+//         populations.dateOfBirth < '2013-12-31' AND populations.dateOfBirth != '0000-00-00' and
+//         populations.id not in (SELECT populations.id,populations.gender,populations.name,populations.surname,populations.phoneNumber,populations.dateOfBirth,populations.address,populations.image,cencuses.cencus_id ,users.status FROM users,populations,cencuses WHERE populations.phoneNumber = users.phoneNumber AND populations.cencus_id = cencuses.id and users.status='verify')");
+//         return response()->json(['data'=>$vote]);
+        
+//  }
+
+ //ຜູ້ທີ່ໄດ້ຮັບສິດ ແລະ ຜ່ານການກວດ
+ public function canvotingAndverifies(){
+        $vote = DB::select("SELECT populations.id,populations.gender,populations.name,populations.surname,populations.phoneNumber,populations.dateOfBirth,populations.address,populations.image,cencuses.cencus_id ,users.status FROM users,populations,cencuses WHERE populations.phoneNumber = users.phoneNumber AND populations.cencus_id = cencuses.id and users.status='verify';");
+        return response()->json(['data'=>$vote]);
+        
  }
 
 }

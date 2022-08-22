@@ -37,13 +37,17 @@ class VoteController extends Controller
         //     $checkverify= DB::select('SELECT populations.phoneNumber FROM Populations WHERE populations.id = '.$population_id );
            
         // }
-
+        // $age= DB::select('SELECT populations.dateOfBirth FROM populations WHERE populations.id ='.$request->population_id.'; ');
+        // if($age <='2013-12-31'){
+        //     return response()->json(["massage" => ' ອາຍຸບໍ່ຮອດ'],400);
+        // }
         if ($population_id) {
             return response()->json(["massage" => 'ໂວດໄດ້ເທື່ອດຽວເດິກະໂປກ'],400);
         }          
         
         $population = Population::where("id", "=", $request->population_id)->with("cencuses")->first();
-
+   
+   
         $current_population_cencus = $population->cencus_id;
         $check_vote_cencus = DB::table("votes")
         ->select("*")

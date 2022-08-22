@@ -88,7 +88,7 @@ class PopulationController extends Controller
     }
     public function showpopulations()
     {
-        $verify= DB::select('SELECT populations.gender,populations.name,populations.surname,populations.image,populations.dateOfBirth,populations.cencus_id    FROM populations, votes WHERE populations.id = votes.population_id;');
+        $verify= DB::select('SELECT populations.gender,populations.name,populations.surname,populations.image,populations.dateOfBirth,populations.phoneNumber,cencuses.cencus_id FROM populations, votes ,cencuses WHERE populations.cencus_id= cencuses.id and populations.id = votes.population_id;');
  
         return response()->json(['data'=>$verify]);
     }
