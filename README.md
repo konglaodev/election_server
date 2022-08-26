@@ -3,7 +3,7 @@
 - ຕິດຕັ້ງ composer 
 - ຕິດຕັ້ງ xampp 
 - ຕິດຕັ້ງ postman ເພື່ອທົດສອບ API
-- clone project : git clone git@github.com:konglaodev/election_server.git
+- clone project : git clone https://github.com/konglaodev/election_server.git
 - ເປີດ folder ທີ່ clone ກ່ອນໜ້າ ດ້ວຍ visual studio code 
 ເປິດ terminal ຂຶ້ນມາ ພິມຄຳສັ່ງ ຕໍ່ໃປນີ້
 - composer install 
