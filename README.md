@@ -16,5 +16,7 @@
 ແລະ ນຳໃຊ້ jwt ( laravel passport ) 
 - php artisan passport:install
 ຈະໄດ້ publickey and private key copy key ເອົາໃປແທນໃສ່ key ທີ່ຢູ່ ໃນ file ApiAuthentication.php
-
+run project 
+- php artisan serve
+- php artisan serve --port 8001 // ສຳຫຼັບ login
 - ນຳໃຊ້ postman ທົດສອບ
